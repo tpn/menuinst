@@ -3,14 +3,15 @@
 # All rights reserved.
 
 import os
-from os.path import expanduser, isdir, join
+import sys
+from os.path import expanduser, isdir, join, exists
 
 from utils import rm_empty_dir, rm_rf
 import wininst
 from wininst import get_special_folder_path as get_folder
 
+mode = ('user' if exists(join(sys.prefix, '.nonadmin')) else 'system')
 
-mode = 'system'
 quicklaunch_dir = join(get_folder('CSIDL_APPDATA'),
                        "Microsoft", "Internet Explorer", "Quick Launch")
 
